@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Table } from "react-bootstrap";
 
 function App() {
+  const details = [
+    { name: "SAURAV BHANDARI", qualification: "B-Tech", place: "New Delhi" },
+  ];
+  const [users, setUsers] = useState(details);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Details</h1>
+      <Table striped bordered hover size="sm">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Qualification</th>
+            <th>Place</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((item, i) => (
+            <tr key={i}>
+              <td>{item.name}</td>
+              <td>{item.qualification}</td>
+              <td>{item.place}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <button
+        id="click"
+        onClick={function () {
+          setUsers([]);
+        }}
+      >
+        Clear
+      </button>
     </div>
   );
 }
